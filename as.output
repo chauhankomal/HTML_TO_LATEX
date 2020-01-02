@@ -1,0 +1,2202 @@
+Terminals unused in grammar
+
+   ATTRIBUTE
+   ID
+   SYMBOL
+   GREEK
+
+
+State 31 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: S_HTML content E_HTML
+
+    2 content: head body
+
+    3 head: S_HEAD title E_HEAD
+
+    4 title: %empty
+    5      | mk S_TITLE tags E_TITLE
+
+    6 body: mk S_BODY body_content E_BODY
+
+    7 mk: %empty
+
+    8 mka: %empty
+
+    9 body_content: %empty
+   10             | body_content tag
+
+   11 tag: mk S_PARA tags E_PARA
+   12    | mk S_H1 tags E_H1
+   13    | mk S_H2 tags E_H2
+   14    | mk S_H3 tags E_H3
+   15    | mk S_H4 tags E_H4
+   16    | mk S_DIV tags E_DIV
+   17    | mk S_SMALL tags E_SMALL
+   18    | mk S_STRONG tags E_STRONG
+   19    | mk S_I tags E_I
+   20    | mk S_SUB tags E_SUB
+   21    | mk S_SUP tags E_SUP
+   22    | mk S_EM tags E_EM
+   23    | mk S_U tags E_U
+   24    | mk S_TT tags E_TT
+   25    | mk S_BOLD tags E_BOLD
+   26    | mk S_CENTER tags E_CENTER
+   27    | mk font
+   28    | o_list
+   29    | u_list
+   30    | des_list
+   31    | image
+   32    | figure
+   33    | anchor
+   34    | table
+   35    | text
+   36    | break
+
+   37 break: BREAK
+
+   38 tags: %empty
+   39     | tags tag
+
+   40 font: FONT SIZE ATTR_VAL E_ANG_BRACKET tags E_FONT
+
+   41 o_list: mk S_OLIST list_con E_OLIST
+
+   42 u_list: mk S_ULIST list_con E_ULIST
+
+   43 list_con: %empty
+   44         | list_con o_list
+   45         | list_con u_list
+   46         | list_con list_item
+
+   47 list_item: mk S_ITEM tags E_ITEM
+
+   48 des_list: mk S_DL des_list_con E_DL
+
+   49 des_list_con: %empty
+   50             | des_list_con des_list_item
+
+   51 dt_node: %empty
+
+   52 dd_node: %empty
+
+   53 des_list_item: mk mk S_DT tags E_DT dt_node mk S_DD tags E_DD dd_node
+
+   54 table: mk S_TABLE mka attributes E_ANG_BRACKET table_rows E_TABLE
+
+   55 caption: mk S_CAPTION tags E_CAPTION
+
+   56 table_rows: %empty
+   57           | table_rows table_row
+   58           | table_rows caption
+
+   59 table_row: mk S_TR table_data E_TR
+
+   60 table_data: %empty
+   61           | table_data mk S_TH tags E_TH
+   62           | table_data mk S_TD tags E_TD
+
+   63 figure: mk S_FIG fig_attr E_FIG
+
+   64 fig_attr: %empty
+   65         | fig_attr image
+   66         | fig_attr fig_caption
+
+   67 fig_caption: mk S_FIGCAPTION tags E_FIGCAPTION
+
+   68 image: IMAGE_WITH_ATTRIBUTE mka attributes E_ANG_BRACKET
+
+   69 anchor: mk A_HREF mka attributes E_ANG_BRACKET tags E_A
+
+   70 attributes: %empty
+   71           | attributes attr_val
+
+   72 attr_val: attribute_type ATTR_VAL
+
+   73 attribute_type: WIDTH
+   74               | HEIGHT
+   75               | SOURCE
+   76               | HREF
+   77               | NAME
+   78               | BORDER
+   79               | TITLE
+
+   80 text: STRING
+   81     | text STRING
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+S_HEAD (258) 3
+E_HEAD (259) 3
+S_BODY (260) 6
+E_BODY (261) 6
+S_TITLE (262) 5
+E_TITLE (263) 5
+S_H1 (264) 12
+E_H1 (265) 12
+STRING (266) 80 81
+FONT (267) 40
+S_HTML (268) 1
+E_HTML (269) 1
+S_H2 (270) 13
+E_H2 (271) 13
+S_H3 (272) 14
+E_H3 (273) 14
+S_H4 (274) 15
+E_H4 (275) 15
+A_HREF (276) 69
+E_A (277) 69
+E_ANG_BRACKET (278) 40 54 68 69
+S_U (279) 23
+E_U (280) 23
+TITLE (281) 79
+S_CENTER (282) 26
+E_CENTER (283) 26
+BREAK (284) 37
+S_PARA (285) 11
+E_PARA (286) 11
+E_FONT (287) 40
+WIDTH (288) 73
+HEIGHT (289) 74
+HREF (290) 76
+S_FIGCAPTION (291) 67
+E_FIGCAPTION (292) 67
+S_OLIST (293) 41
+E_OLIST (294) 41
+S_ULIST (295) 42
+E_ULIST (296) 42
+S_ITEM (297) 47
+E_ITEM (298) 47
+S_DL (299) 48
+E_DL (300) 48
+S_DT (301) 53
+E_DT (302) 53
+S_DD (303) 53
+E_DD (304) 53
+IMAGE_WITH_ATTRIBUTE (305) 68
+S_I (306) 19
+E_I (307) 19
+S_SMALL (308) 17
+E_SMALL (309) 17
+S_STRONG (310) 18
+E_STRONG (311) 18
+S_BOLD (312) 25
+E_BOLD (313) 25
+S_EM (314) 22
+E_EM (315) 22
+S_TT (316) 24
+E_TT (317) 24
+S_DIV (318) 16
+E_DIV (319) 16
+E_TABLE (320) 54
+S_TABLE (321) 54
+SIZE (322) 40
+ATTRIBUTE (323)
+SOURCE (324) 75
+ATTR_VAL (325) 40 72
+BORDER (326) 78
+NAME (327) 77
+ID (328)
+S_SUB (329) 20
+E_SUB (330) 20
+S_SUP (331) 21
+E_SUP (332) 21
+SYMBOL (333)
+S_TD (334) 62
+E_TD (335) 62
+S_TR (336) 59
+E_TR (337) 59
+S_TH (338) 61
+E_TH (339) 61
+S_CAPTION (340) 55
+E_CAPTION (341) 55
+GREEK (342)
+S_FIG (343) 63
+E_FIG (344) 63
+
+
+Nonterminals, with rules where they appear
+
+$accept (90)
+    on left: 0
+start (91)
+    on left: 1, on right: 0
+content (92)
+    on left: 2, on right: 1
+head (93)
+    on left: 3, on right: 2
+title (94)
+    on left: 4 5, on right: 3
+body (95)
+    on left: 6, on right: 2
+mk (96)
+    on left: 7, on right: 5 6 11 12 13 14 15 16 17 18 19 20 21 22 23
+    24 25 26 27 41 42 47 48 53 54 55 59 61 62 63 67 69
+mka (97)
+    on left: 8, on right: 54 68 69
+body_content (98)
+    on left: 9 10, on right: 6 10
+tag (99)
+    on left: 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+    29 30 31 32 33 34 35 36, on right: 10 39
+break (100)
+    on left: 37, on right: 36
+tags (101)
+    on left: 38 39, on right: 5 11 12 13 14 15 16 17 18 19 20 21 22
+    23 24 25 26 39 40 47 53 55 61 62 67 69
+font (102)
+    on left: 40, on right: 27
+o_list (103)
+    on left: 41, on right: 28 44
+u_list (104)
+    on left: 42, on right: 29 45
+list_con (105)
+    on left: 43 44 45 46, on right: 41 42 44 45 46
+list_item (106)
+    on left: 47, on right: 46
+des_list (107)
+    on left: 48, on right: 30
+des_list_con (108)
+    on left: 49 50, on right: 48 50
+dt_node (109)
+    on left: 51, on right: 53
+dd_node (110)
+    on left: 52, on right: 53
+des_list_item (111)
+    on left: 53, on right: 50
+table (112)
+    on left: 54, on right: 34
+caption (113)
+    on left: 55, on right: 58
+table_rows (114)
+    on left: 56 57 58, on right: 54 57 58
+table_row (115)
+    on left: 59, on right: 57
+table_data (116)
+    on left: 60 61 62, on right: 59 61 62
+figure (117)
+    on left: 63, on right: 32
+fig_attr (118)
+    on left: 64 65 66, on right: 63 65 66
+fig_caption (119)
+    on left: 67, on right: 66
+image (120)
+    on left: 68, on right: 31 65
+anchor (121)
+    on left: 69, on right: 33
+attributes (122)
+    on left: 70 71, on right: 54 68 69 71
+attr_val (123)
+    on left: 72, on right: 71
+attribute_type (124)
+    on left: 73 74 75 76 77 78 79, on right: 72
+text (125)
+    on left: 80 81, on right: 35 81
+
+
+State 0
+
+    0 $accept: . start $end
+
+    S_HTML  shift, and go to state 1
+
+    start  go to state 2
+
+
+State 1
+
+    1 start: S_HTML . content E_HTML
+
+    S_HEAD  shift, and go to state 3
+
+    content  go to state 4
+    head     go to state 5
+
+
+State 2
+
+    0 $accept: start . $end
+
+    $end  shift, and go to state 6
+
+
+State 3
+
+    3 head: S_HEAD . title E_HEAD
+
+    S_TITLE   reduce using rule 7 (mk)
+    $default  reduce using rule 4 (title)
+
+    title  go to state 7
+    mk     go to state 8
+
+
+State 4
+
+    1 start: S_HTML content . E_HTML
+
+    E_HTML  shift, and go to state 9
+
+
+State 5
+
+    2 content: head . body
+
+    $default  reduce using rule 7 (mk)
+
+    body  go to state 10
+    mk    go to state 11
+
+
+State 6
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+State 7
+
+    3 head: S_HEAD title . E_HEAD
+
+    E_HEAD  shift, and go to state 12
+
+
+State 8
+
+    5 title: mk . S_TITLE tags E_TITLE
+
+    S_TITLE  shift, and go to state 13
+
+
+State 9
+
+    1 start: S_HTML content E_HTML .
+
+    $default  reduce using rule 1 (start)
+
+
+State 10
+
+    2 content: head body .
+
+    $default  reduce using rule 2 (content)
+
+
+State 11
+
+    6 body: mk . S_BODY body_content E_BODY
+
+    S_BODY  shift, and go to state 14
+
+
+State 12
+
+    3 head: S_HEAD title E_HEAD .
+
+    $default  reduce using rule 3 (head)
+
+
+State 13
+
+    5 title: mk S_TITLE . tags E_TITLE
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 15
+
+
+State 14
+
+    6 body: mk S_BODY . body_content E_BODY
+
+    $default  reduce using rule 9 (body_content)
+
+    body_content  go to state 16
+
+
+State 15
+
+    5 title: mk S_TITLE tags . E_TITLE
+   39 tags: tags . tag
+
+    E_TITLE               shift, and go to state 17
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 16
+
+    6 body: mk S_BODY body_content . E_BODY
+   10 body_content: body_content . tag
+
+    E_BODY                shift, and go to state 32
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 33
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 17
+
+    5 title: mk S_TITLE tags E_TITLE .
+
+    $default  reduce using rule 5 (title)
+
+
+State 18
+
+   80 text: STRING .
+
+    $default  reduce using rule 80 (text)
+
+
+State 19
+
+   37 break: BREAK .
+
+    $default  reduce using rule 37 (break)
+
+
+State 20
+
+   68 image: IMAGE_WITH_ATTRIBUTE . mka attributes E_ANG_BRACKET
+
+    $default  reduce using rule 8 (mka)
+
+    mka  go to state 34
+
+
+State 21
+
+   11 tag: mk . S_PARA tags E_PARA
+   12    | mk . S_H1 tags E_H1
+   13    | mk . S_H2 tags E_H2
+   14    | mk . S_H3 tags E_H3
+   15    | mk . S_H4 tags E_H4
+   16    | mk . S_DIV tags E_DIV
+   17    | mk . S_SMALL tags E_SMALL
+   18    | mk . S_STRONG tags E_STRONG
+   19    | mk . S_I tags E_I
+   20    | mk . S_SUB tags E_SUB
+   21    | mk . S_SUP tags E_SUP
+   22    | mk . S_EM tags E_EM
+   23    | mk . S_U tags E_U
+   24    | mk . S_TT tags E_TT
+   25    | mk . S_BOLD tags E_BOLD
+   26    | mk . S_CENTER tags E_CENTER
+   27    | mk . font
+   41 o_list: mk . S_OLIST list_con E_OLIST
+   42 u_list: mk . S_ULIST list_con E_ULIST
+   48 des_list: mk . S_DL des_list_con E_DL
+   54 table: mk . S_TABLE mka attributes E_ANG_BRACKET table_rows E_TABLE
+   63 figure: mk . S_FIG fig_attr E_FIG
+   69 anchor: mk . A_HREF mka attributes E_ANG_BRACKET tags E_A
+
+    S_H1      shift, and go to state 35
+    FONT      shift, and go to state 36
+    S_H2      shift, and go to state 37
+    S_H3      shift, and go to state 38
+    S_H4      shift, and go to state 39
+    A_HREF    shift, and go to state 40
+    S_U       shift, and go to state 41
+    S_CENTER  shift, and go to state 42
+    S_PARA    shift, and go to state 43
+    S_OLIST   shift, and go to state 44
+    S_ULIST   shift, and go to state 45
+    S_DL      shift, and go to state 46
+    S_I       shift, and go to state 47
+    S_SMALL   shift, and go to state 48
+    S_STRONG  shift, and go to state 49
+    S_BOLD    shift, and go to state 50
+    S_EM      shift, and go to state 51
+    S_TT      shift, and go to state 52
+    S_DIV     shift, and go to state 53
+    S_TABLE   shift, and go to state 54
+    S_SUB     shift, and go to state 55
+    S_SUP     shift, and go to state 56
+    S_FIG     shift, and go to state 57
+
+    font  go to state 58
+
+
+State 22
+
+   39 tags: tags tag .
+
+    $default  reduce using rule 39 (tags)
+
+
+State 23
+
+   36 tag: break .
+
+    $default  reduce using rule 36 (tag)
+
+
+State 24
+
+   28 tag: o_list .
+
+    $default  reduce using rule 28 (tag)
+
+
+State 25
+
+   29 tag: u_list .
+
+    $default  reduce using rule 29 (tag)
+
+
+State 26
+
+   30 tag: des_list .
+
+    $default  reduce using rule 30 (tag)
+
+
+State 27
+
+   34 tag: table .
+
+    $default  reduce using rule 34 (tag)
+
+
+State 28
+
+   32 tag: figure .
+
+    $default  reduce using rule 32 (tag)
+
+
+State 29
+
+   31 tag: image .
+
+    $default  reduce using rule 31 (tag)
+
+
+State 30
+
+   33 tag: anchor .
+
+    $default  reduce using rule 33 (tag)
+
+
+State 31
+
+   35 tag: text .
+   81 text: text . STRING
+
+    STRING  shift, and go to state 59
+
+    STRING    [reduce using rule 35 (tag)]
+    $default  reduce using rule 35 (tag)
+
+
+State 32
+
+    6 body: mk S_BODY body_content E_BODY .
+
+    $default  reduce using rule 6 (body)
+
+
+State 33
+
+   10 body_content: body_content tag .
+
+    $default  reduce using rule 10 (body_content)
+
+
+State 34
+
+   68 image: IMAGE_WITH_ATTRIBUTE mka . attributes E_ANG_BRACKET
+
+    $default  reduce using rule 70 (attributes)
+
+    attributes  go to state 60
+
+
+State 35
+
+   12 tag: mk S_H1 . tags E_H1
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 61
+
+
+State 36
+
+   40 font: FONT . SIZE ATTR_VAL E_ANG_BRACKET tags E_FONT
+
+    SIZE  shift, and go to state 62
+
+
+State 37
+
+   13 tag: mk S_H2 . tags E_H2
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 63
+
+
+State 38
+
+   14 tag: mk S_H3 . tags E_H3
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 64
+
+
+State 39
+
+   15 tag: mk S_H4 . tags E_H4
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 65
+
+
+State 40
+
+   69 anchor: mk A_HREF . mka attributes E_ANG_BRACKET tags E_A
+
+    $default  reduce using rule 8 (mka)
+
+    mka  go to state 66
+
+
+State 41
+
+   23 tag: mk S_U . tags E_U
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 67
+
+
+State 42
+
+   26 tag: mk S_CENTER . tags E_CENTER
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 68
+
+
+State 43
+
+   11 tag: mk S_PARA . tags E_PARA
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 69
+
+
+State 44
+
+   41 o_list: mk S_OLIST . list_con E_OLIST
+
+    $default  reduce using rule 43 (list_con)
+
+    list_con  go to state 70
+
+
+State 45
+
+   42 u_list: mk S_ULIST . list_con E_ULIST
+
+    $default  reduce using rule 43 (list_con)
+
+    list_con  go to state 71
+
+
+State 46
+
+   48 des_list: mk S_DL . des_list_con E_DL
+
+    $default  reduce using rule 49 (des_list_con)
+
+    des_list_con  go to state 72
+
+
+State 47
+
+   19 tag: mk S_I . tags E_I
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 73
+
+
+State 48
+
+   17 tag: mk S_SMALL . tags E_SMALL
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 74
+
+
+State 49
+
+   18 tag: mk S_STRONG . tags E_STRONG
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 75
+
+
+State 50
+
+   25 tag: mk S_BOLD . tags E_BOLD
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 76
+
+
+State 51
+
+   22 tag: mk S_EM . tags E_EM
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 77
+
+
+State 52
+
+   24 tag: mk S_TT . tags E_TT
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 78
+
+
+State 53
+
+   16 tag: mk S_DIV . tags E_DIV
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 79
+
+
+State 54
+
+   54 table: mk S_TABLE . mka attributes E_ANG_BRACKET table_rows E_TABLE
+
+    $default  reduce using rule 8 (mka)
+
+    mka  go to state 80
+
+
+State 55
+
+   20 tag: mk S_SUB . tags E_SUB
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 81
+
+
+State 56
+
+   21 tag: mk S_SUP . tags E_SUP
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 82
+
+
+State 57
+
+   63 figure: mk S_FIG . fig_attr E_FIG
+
+    $default  reduce using rule 64 (fig_attr)
+
+    fig_attr  go to state 83
+
+
+State 58
+
+   27 tag: mk font .
+
+    $default  reduce using rule 27 (tag)
+
+
+State 59
+
+   81 text: text STRING .
+
+    $default  reduce using rule 81 (text)
+
+
+State 60
+
+   68 image: IMAGE_WITH_ATTRIBUTE mka attributes . E_ANG_BRACKET
+   71 attributes: attributes . attr_val
+
+    E_ANG_BRACKET  shift, and go to state 84
+    TITLE          shift, and go to state 85
+    WIDTH          shift, and go to state 86
+    HEIGHT         shift, and go to state 87
+    HREF           shift, and go to state 88
+    SOURCE         shift, and go to state 89
+    BORDER         shift, and go to state 90
+    NAME           shift, and go to state 91
+
+    attr_val        go to state 92
+    attribute_type  go to state 93
+
+
+State 61
+
+   12 tag: mk S_H1 tags . E_H1
+   39 tags: tags . tag
+
+    E_H1                  shift, and go to state 94
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 62
+
+   40 font: FONT SIZE . ATTR_VAL E_ANG_BRACKET tags E_FONT
+
+    ATTR_VAL  shift, and go to state 95
+
+
+State 63
+
+   13 tag: mk S_H2 tags . E_H2
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    E_H2                  shift, and go to state 96
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 64
+
+   14 tag: mk S_H3 tags . E_H3
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    E_H3                  shift, and go to state 97
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 65
+
+   15 tag: mk S_H4 tags . E_H4
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    E_H4                  shift, and go to state 98
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 66
+
+   69 anchor: mk A_HREF mka . attributes E_ANG_BRACKET tags E_A
+
+    $default  reduce using rule 70 (attributes)
+
+    attributes  go to state 99
+
+
+State 67
+
+   23 tag: mk S_U tags . E_U
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    E_U                   shift, and go to state 100
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 68
+
+   26 tag: mk S_CENTER tags . E_CENTER
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    E_CENTER              shift, and go to state 101
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 69
+
+   11 tag: mk S_PARA tags . E_PARA
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    E_PARA                shift, and go to state 102
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 70
+
+   41 o_list: mk S_OLIST list_con . E_OLIST
+   44 list_con: list_con . o_list
+   45         | list_con . u_list
+   46         | list_con . list_item
+
+    E_OLIST  shift, and go to state 103
+
+    $default  reduce using rule 7 (mk)
+
+    mk         go to state 104
+    o_list     go to state 105
+    u_list     go to state 106
+    list_item  go to state 107
+
+
+State 71
+
+   42 u_list: mk S_ULIST list_con . E_ULIST
+   44 list_con: list_con . o_list
+   45         | list_con . u_list
+   46         | list_con . list_item
+
+    E_ULIST  shift, and go to state 108
+
+    $default  reduce using rule 7 (mk)
+
+    mk         go to state 104
+    o_list     go to state 105
+    u_list     go to state 106
+    list_item  go to state 107
+
+
+State 72
+
+   48 des_list: mk S_DL des_list_con . E_DL
+   50 des_list_con: des_list_con . des_list_item
+
+    E_DL  shift, and go to state 109
+
+    $default  reduce using rule 7 (mk)
+
+    mk             go to state 110
+    des_list_item  go to state 111
+
+
+State 73
+
+   19 tag: mk S_I tags . E_I
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_I                   shift, and go to state 112
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 74
+
+   17 tag: mk S_SMALL tags . E_SMALL
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_SMALL               shift, and go to state 113
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 75
+
+   18 tag: mk S_STRONG tags . E_STRONG
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_STRONG              shift, and go to state 114
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 76
+
+   25 tag: mk S_BOLD tags . E_BOLD
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_BOLD                shift, and go to state 115
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 77
+
+   22 tag: mk S_EM tags . E_EM
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_EM                  shift, and go to state 116
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 78
+
+   24 tag: mk S_TT tags . E_TT
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_TT                  shift, and go to state 117
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 79
+
+   16 tag: mk S_DIV tags . E_DIV
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_DIV                 shift, and go to state 118
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 80
+
+   54 table: mk S_TABLE mka . attributes E_ANG_BRACKET table_rows E_TABLE
+
+    $default  reduce using rule 70 (attributes)
+
+    attributes  go to state 119
+
+
+State 81
+
+   20 tag: mk S_SUB tags . E_SUB
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_SUB                 shift, and go to state 120
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 82
+
+   21 tag: mk S_SUP tags . E_SUP
+   39 tags: tags . tag
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_SUP                 shift, and go to state 121
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 83
+
+   63 figure: mk S_FIG fig_attr . E_FIG
+   65 fig_attr: fig_attr . image
+   66         | fig_attr . fig_caption
+
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_FIG                 shift, and go to state 122
+
+    $default  reduce using rule 7 (mk)
+
+    mk           go to state 123
+    fig_caption  go to state 124
+    image        go to state 125
+
+
+State 84
+
+   68 image: IMAGE_WITH_ATTRIBUTE mka attributes E_ANG_BRACKET .
+
+    $default  reduce using rule 68 (image)
+
+
+State 85
+
+   79 attribute_type: TITLE .
+
+    $default  reduce using rule 79 (attribute_type)
+
+
+State 86
+
+   73 attribute_type: WIDTH .
+
+    $default  reduce using rule 73 (attribute_type)
+
+
+State 87
+
+   74 attribute_type: HEIGHT .
+
+    $default  reduce using rule 74 (attribute_type)
+
+
+State 88
+
+   76 attribute_type: HREF .
+
+    $default  reduce using rule 76 (attribute_type)
+
+
+State 89
+
+   75 attribute_type: SOURCE .
+
+    $default  reduce using rule 75 (attribute_type)
+
+
+State 90
+
+   78 attribute_type: BORDER .
+
+    $default  reduce using rule 78 (attribute_type)
+
+
+State 91
+
+   77 attribute_type: NAME .
+
+    $default  reduce using rule 77 (attribute_type)
+
+
+State 92
+
+   71 attributes: attributes attr_val .
+
+    $default  reduce using rule 71 (attributes)
+
+
+State 93
+
+   72 attr_val: attribute_type . ATTR_VAL
+
+    ATTR_VAL  shift, and go to state 126
+
+
+State 94
+
+   12 tag: mk S_H1 tags E_H1 .
+
+    $default  reduce using rule 12 (tag)
+
+
+State 95
+
+   40 font: FONT SIZE ATTR_VAL . E_ANG_BRACKET tags E_FONT
+
+    E_ANG_BRACKET  shift, and go to state 127
+
+
+State 96
+
+   13 tag: mk S_H2 tags E_H2 .
+
+    $default  reduce using rule 13 (tag)
+
+
+State 97
+
+   14 tag: mk S_H3 tags E_H3 .
+
+    $default  reduce using rule 14 (tag)
+
+
+State 98
+
+   15 tag: mk S_H4 tags E_H4 .
+
+    $default  reduce using rule 15 (tag)
+
+
+State 99
+
+   69 anchor: mk A_HREF mka attributes . E_ANG_BRACKET tags E_A
+   71 attributes: attributes . attr_val
+
+    E_ANG_BRACKET  shift, and go to state 128
+    TITLE          shift, and go to state 85
+    WIDTH          shift, and go to state 86
+    HEIGHT         shift, and go to state 87
+    HREF           shift, and go to state 88
+    SOURCE         shift, and go to state 89
+    BORDER         shift, and go to state 90
+    NAME           shift, and go to state 91
+
+    attr_val        go to state 92
+    attribute_type  go to state 93
+
+
+State 100
+
+   23 tag: mk S_U tags E_U .
+
+    $default  reduce using rule 23 (tag)
+
+
+State 101
+
+   26 tag: mk S_CENTER tags E_CENTER .
+
+    $default  reduce using rule 26 (tag)
+
+
+State 102
+
+   11 tag: mk S_PARA tags E_PARA .
+
+    $default  reduce using rule 11 (tag)
+
+
+State 103
+
+   41 o_list: mk S_OLIST list_con E_OLIST .
+
+    $default  reduce using rule 41 (o_list)
+
+
+State 104
+
+   41 o_list: mk . S_OLIST list_con E_OLIST
+   42 u_list: mk . S_ULIST list_con E_ULIST
+   47 list_item: mk . S_ITEM tags E_ITEM
+
+    S_OLIST  shift, and go to state 44
+    S_ULIST  shift, and go to state 45
+    S_ITEM   shift, and go to state 129
+
+
+State 105
+
+   44 list_con: list_con o_list .
+
+    $default  reduce using rule 44 (list_con)
+
+
+State 106
+
+   45 list_con: list_con u_list .
+
+    $default  reduce using rule 45 (list_con)
+
+
+State 107
+
+   46 list_con: list_con list_item .
+
+    $default  reduce using rule 46 (list_con)
+
+
+State 108
+
+   42 u_list: mk S_ULIST list_con E_ULIST .
+
+    $default  reduce using rule 42 (u_list)
+
+
+State 109
+
+   48 des_list: mk S_DL des_list_con E_DL .
+
+    $default  reduce using rule 48 (des_list)
+
+
+State 110
+
+   53 des_list_item: mk . mk S_DT tags E_DT dt_node mk S_DD tags E_DD dd_node
+
+    $default  reduce using rule 7 (mk)
+
+    mk  go to state 130
+
+
+State 111
+
+   50 des_list_con: des_list_con des_list_item .
+
+    $default  reduce using rule 50 (des_list_con)
+
+
+State 112
+
+   19 tag: mk S_I tags E_I .
+
+    $default  reduce using rule 19 (tag)
+
+
+State 113
+
+   17 tag: mk S_SMALL tags E_SMALL .
+
+    $default  reduce using rule 17 (tag)
+
+
+State 114
+
+   18 tag: mk S_STRONG tags E_STRONG .
+
+    $default  reduce using rule 18 (tag)
+
+
+State 115
+
+   25 tag: mk S_BOLD tags E_BOLD .
+
+    $default  reduce using rule 25 (tag)
+
+
+State 116
+
+   22 tag: mk S_EM tags E_EM .
+
+    $default  reduce using rule 22 (tag)
+
+
+State 117
+
+   24 tag: mk S_TT tags E_TT .
+
+    $default  reduce using rule 24 (tag)
+
+
+State 118
+
+   16 tag: mk S_DIV tags E_DIV .
+
+    $default  reduce using rule 16 (tag)
+
+
+State 119
+
+   54 table: mk S_TABLE mka attributes . E_ANG_BRACKET table_rows E_TABLE
+   71 attributes: attributes . attr_val
+
+    E_ANG_BRACKET  shift, and go to state 131
+    TITLE          shift, and go to state 85
+    WIDTH          shift, and go to state 86
+    HEIGHT         shift, and go to state 87
+    HREF           shift, and go to state 88
+    SOURCE         shift, and go to state 89
+    BORDER         shift, and go to state 90
+    NAME           shift, and go to state 91
+
+    attr_val        go to state 92
+    attribute_type  go to state 93
+
+
+State 120
+
+   20 tag: mk S_SUB tags E_SUB .
+
+    $default  reduce using rule 20 (tag)
+
+
+State 121
+
+   21 tag: mk S_SUP tags E_SUP .
+
+    $default  reduce using rule 21 (tag)
+
+
+State 122
+
+   63 figure: mk S_FIG fig_attr E_FIG .
+
+    $default  reduce using rule 63 (figure)
+
+
+State 123
+
+   67 fig_caption: mk . S_FIGCAPTION tags E_FIGCAPTION
+
+    S_FIGCAPTION  shift, and go to state 132
+
+
+State 124
+
+   66 fig_attr: fig_attr fig_caption .
+
+    $default  reduce using rule 66 (fig_attr)
+
+
+State 125
+
+   65 fig_attr: fig_attr image .
+
+    $default  reduce using rule 65 (fig_attr)
+
+
+State 126
+
+   72 attr_val: attribute_type ATTR_VAL .
+
+    $default  reduce using rule 72 (attr_val)
+
+
+State 127
+
+   40 font: FONT SIZE ATTR_VAL E_ANG_BRACKET . tags E_FONT
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 133
+
+
+State 128
+
+   69 anchor: mk A_HREF mka attributes E_ANG_BRACKET . tags E_A
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 134
+
+
+State 129
+
+   47 list_item: mk S_ITEM . tags E_ITEM
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 135
+
+
+State 130
+
+   53 des_list_item: mk mk . S_DT tags E_DT dt_node mk S_DD tags E_DD dd_node
+
+    S_DT  shift, and go to state 136
+
+
+State 131
+
+   54 table: mk S_TABLE mka attributes E_ANG_BRACKET . table_rows E_TABLE
+
+    $default  reduce using rule 56 (table_rows)
+
+    table_rows  go to state 137
+
+
+State 132
+
+   67 fig_caption: mk S_FIGCAPTION . tags E_FIGCAPTION
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 138
+
+
+State 133
+
+   39 tags: tags . tag
+   40 font: FONT SIZE ATTR_VAL E_ANG_BRACKET tags . E_FONT
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    E_FONT                shift, and go to state 139
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 134
+
+   39 tags: tags . tag
+   69 anchor: mk A_HREF mka attributes E_ANG_BRACKET tags . E_A
+
+    STRING                shift, and go to state 18
+    E_A                   shift, and go to state 140
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 135
+
+   39 tags: tags . tag
+   47 list_item: mk S_ITEM tags . E_ITEM
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    E_ITEM                shift, and go to state 141
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 136
+
+   53 des_list_item: mk mk S_DT . tags E_DT dt_node mk S_DD tags E_DD dd_node
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 142
+
+
+State 137
+
+   54 table: mk S_TABLE mka attributes E_ANG_BRACKET table_rows . E_TABLE
+   57 table_rows: table_rows . table_row
+   58           | table_rows . caption
+
+    E_TABLE  shift, and go to state 143
+
+    $default  reduce using rule 7 (mk)
+
+    mk         go to state 144
+    caption    go to state 145
+    table_row  go to state 146
+
+
+State 138
+
+   39 tags: tags . tag
+   67 fig_caption: mk S_FIGCAPTION tags . E_FIGCAPTION
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    E_FIGCAPTION          shift, and go to state 147
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 139
+
+   40 font: FONT SIZE ATTR_VAL E_ANG_BRACKET tags E_FONT .
+
+    $default  reduce using rule 40 (font)
+
+
+State 140
+
+   69 anchor: mk A_HREF mka attributes E_ANG_BRACKET tags E_A .
+
+    $default  reduce using rule 69 (anchor)
+
+
+State 141
+
+   47 list_item: mk S_ITEM tags E_ITEM .
+
+    $default  reduce using rule 47 (list_item)
+
+
+State 142
+
+   39 tags: tags . tag
+   53 des_list_item: mk mk S_DT tags . E_DT dt_node mk S_DD tags E_DD dd_node
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    E_DT                  shift, and go to state 148
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 143
+
+   54 table: mk S_TABLE mka attributes E_ANG_BRACKET table_rows E_TABLE .
+
+    $default  reduce using rule 54 (table)
+
+
+State 144
+
+   55 caption: mk . S_CAPTION tags E_CAPTION
+   59 table_row: mk . S_TR table_data E_TR
+
+    S_TR       shift, and go to state 149
+    S_CAPTION  shift, and go to state 150
+
+
+State 145
+
+   58 table_rows: table_rows caption .
+
+    $default  reduce using rule 58 (table_rows)
+
+
+State 146
+
+   57 table_rows: table_rows table_row .
+
+    $default  reduce using rule 57 (table_rows)
+
+
+State 147
+
+   67 fig_caption: mk S_FIGCAPTION tags E_FIGCAPTION .
+
+    $default  reduce using rule 67 (fig_caption)
+
+
+State 148
+
+   53 des_list_item: mk mk S_DT tags E_DT . dt_node mk S_DD tags E_DD dd_node
+
+    $default  reduce using rule 51 (dt_node)
+
+    dt_node  go to state 151
+
+
+State 149
+
+   59 table_row: mk S_TR . table_data E_TR
+
+    $default  reduce using rule 60 (table_data)
+
+    table_data  go to state 152
+
+
+State 150
+
+   55 caption: mk S_CAPTION . tags E_CAPTION
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 153
+
+
+State 151
+
+   53 des_list_item: mk mk S_DT tags E_DT dt_node . mk S_DD tags E_DD dd_node
+
+    $default  reduce using rule 7 (mk)
+
+    mk  go to state 154
+
+
+State 152
+
+   59 table_row: mk S_TR table_data . E_TR
+   61 table_data: table_data . mk S_TH tags E_TH
+   62           | table_data . mk S_TD tags E_TD
+
+    E_TR  shift, and go to state 155
+
+    $default  reduce using rule 7 (mk)
+
+    mk  go to state 156
+
+
+State 153
+
+   39 tags: tags . tag
+   55 caption: mk S_CAPTION tags . E_CAPTION
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_CAPTION             shift, and go to state 157
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 154
+
+   53 des_list_item: mk mk S_DT tags E_DT dt_node mk . S_DD tags E_DD dd_node
+
+    S_DD  shift, and go to state 158
+
+
+State 155
+
+   59 table_row: mk S_TR table_data E_TR .
+
+    $default  reduce using rule 59 (table_row)
+
+
+State 156
+
+   61 table_data: table_data mk . S_TH tags E_TH
+   62           | table_data mk . S_TD tags E_TD
+
+    S_TD  shift, and go to state 159
+    S_TH  shift, and go to state 160
+
+
+State 157
+
+   55 caption: mk S_CAPTION tags E_CAPTION .
+
+    $default  reduce using rule 55 (caption)
+
+
+State 158
+
+   53 des_list_item: mk mk S_DT tags E_DT dt_node mk S_DD . tags E_DD dd_node
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 161
+
+
+State 159
+
+   62 table_data: table_data mk S_TD . tags E_TD
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 162
+
+
+State 160
+
+   61 table_data: table_data mk S_TH . tags E_TH
+
+    $default  reduce using rule 38 (tags)
+
+    tags  go to state 163
+
+
+State 161
+
+   39 tags: tags . tag
+   53 des_list_item: mk mk S_DT tags E_DT dt_node mk S_DD tags . E_DD dd_node
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    E_DD                  shift, and go to state 164
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 162
+
+   39 tags: tags . tag
+   62 table_data: table_data mk S_TD tags . E_TD
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_TD                  shift, and go to state 165
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 163
+
+   39 tags: tags . tag
+   61 table_data: table_data mk S_TH tags . E_TH
+
+    STRING                shift, and go to state 18
+    BREAK                 shift, and go to state 19
+    IMAGE_WITH_ATTRIBUTE  shift, and go to state 20
+    E_TH                  shift, and go to state 166
+
+    $default  reduce using rule 7 (mk)
+
+    mk        go to state 21
+    tag       go to state 22
+    break     go to state 23
+    o_list    go to state 24
+    u_list    go to state 25
+    des_list  go to state 26
+    table     go to state 27
+    figure    go to state 28
+    image     go to state 29
+    anchor    go to state 30
+    text      go to state 31
+
+
+State 164
+
+   53 des_list_item: mk mk S_DT tags E_DT dt_node mk S_DD tags E_DD . dd_node
+
+    $default  reduce using rule 52 (dd_node)
+
+    dd_node  go to state 167
+
+
+State 165
+
+   62 table_data: table_data mk S_TD tags E_TD .
+
+    $default  reduce using rule 62 (table_data)
+
+
+State 166
+
+   61 table_data: table_data mk S_TH tags E_TH .
+
+    $default  reduce using rule 61 (table_data)
+
+
+State 167
+
+   53 des_list_item: mk mk S_DT tags E_DT dt_node mk S_DD tags E_DD dd_node .
+
+    $default  reduce using rule 53 (des_list_item)
