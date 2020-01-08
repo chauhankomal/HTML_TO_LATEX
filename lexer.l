@@ -48,9 +48,9 @@ INT_STR2 \'([a-zA-Z0-9 \.,\^\=+#!\(\)?\*:;@/\{\}><&_$~%\\\\]*)\'
 "<!DOCTYPE"(.*)">"  		;
 					
 
-"<!--"		  		{BEGIN(COMMENT);}
+"<!--"		  		   		{BEGIN(COMMENT);}
 
-<COMMENT>"-->"			{BEGIN(INITIAL);}
+<COMMENT>"-->"				{BEGIN(INITIAL);}
 
 
 "<html>"|"<HTML>"     		{return S_HTML;}
